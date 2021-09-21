@@ -64,21 +64,6 @@ namespace Rogue.Wpf
             var serviceProvider = CompositionRoot();
             var bootstrapper = serviceProvider.GetRequiredService<Bootstrapper>();
             await bootstrapper.Run();
-            /* Temporary:
-            var themeFileWriter = serviceProvider.GetService<IThemeFileWriter>();
-            themeFileWriter = new ThemeFileWriter();
-            var theme = new Theme()
-            {
-                Name = "Dark Theme",
-                Author = "My Mother",
-                ThemeColors = new Dictionary<string, string>()
-                {
-                    { "PrimaryColor1", "#FFF1F1F1" },
-                    { "SecondaryColor1", "#FF2D2D30" }
-                }
-            };
-            themeFileWriter.WriteThemeAsync(theme, "DarkTheme");
-            */
         }
     }
 }

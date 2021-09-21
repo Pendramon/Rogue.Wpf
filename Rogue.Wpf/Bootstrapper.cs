@@ -23,8 +23,9 @@ namespace Rogue.Wpf
             mainWindow.DataContext = mainWindowViewModel;
             mainWindow.Show();
             await this.themeService.InitializeAsync();
-            // TODO: Temporary remove later
+#if DEBUG
             this.themeService.SetTheme(this.themeService.CustomThemes.First());
+#endif
         }
     }
 }
