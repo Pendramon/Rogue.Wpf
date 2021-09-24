@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rogue.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="{DynamicResource MainWindow.BackgroundBrush}" SnapsToDevicePixels="True" UseLayoutRounding="True" RenderOptions.ClearTypeHint="Enabled" TextOptions.TextRenderingMode="ClearType" AllowsTransparency="True" SizeChanged="Window_StateChanged" WindowStyle="None">
+        Title="MainWindow" Height="450" Width="800" Background="{DynamicResource MainWindow.BackgroundBrushKey}" SnapsToDevicePixels="True" UseLayoutRounding="True" RenderOptions.ClearTypeHint="Enabled" TextOptions.TextRenderingMode="ClearType" AllowsTransparency="True" SizeChanged="Window_StateChanged" WindowStyle="None">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="28" UseAeroCaptionButtons="False" />
     </WindowChrome.WindowChrome>
@@ -31,7 +31,7 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-            <Label Foreground="{DynamicResource MainWindow.TextBrush}" Content="{Binding Title}"/>
+            <Label Foreground="{DynamicResource MainWindow.TextBrushKey}" Content="{Binding Title}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2">
             <Button x:Name="ColorPaletteButton" Style="{StaticResource WindowControlButton}" Width="46" Height="32" Command="{Binding ToggleThemeEditorCommand}">

@@ -5,7 +5,7 @@
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
-        <Setter Property="Foreground" Value="{DynamicResource MainWindow.ButtonBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource MainWindow.ButtonBrushKey}" />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="Template">
@@ -20,11 +20,11 @@
 
         <Style.Triggers>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" Value="{DynamicResource MainWindow.Button-PressedBrush}"></Setter>
+                <Setter Property="Background" Value="{DynamicResource MainWindow.Button.PressedBrushKey}"></Setter>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource MainWindow.Button-HoveredBrush}" />
-                <Setter Property="Foreground" Value="{DynamicResource MainWindow.Button-Hovered.GlyphBrush}" />
+                <Setter Property="Background" Value="{DynamicResource MainWindow.Button.HoveredBrushKey}" />
+                <Setter Property="Foreground" Value="{DynamicResource MainWindow.Button.Hovered.GlyphBrushKey}" />
             </Trigger>
         </Style.Triggers>
     </Style>

@@ -1,1 +1,24 @@
-{"Name":"Dark Theme","Author":"My Mother","ThemeColors":{"PrimaryColor1":"#FF000000","SecondaryColor1":"#FF2D2D30"}}
+{
+    "Name": "Dark Theme",
+    "Author": "Rogue",
+    "ThemeColors": {
+        "MainWindow.Background": "#FF2D2D30",
+        "MainWindow.Text": "#FF999999",
+        "MainWindow.Icon": "#FFFFFFFF",
+        "MainWindow.Button": "#FFF1F1F1",
+        "MainWindow.Button.Hovered": "#72555555",
+        "MainWindow.Button.Pressed": "#FF007ACC",
+        "MainWindow.Button.Hovered.Glyph": "#FFFFFFFF",
+        "Environment.Highlight": "#FF3399FF",
+        "Environment.Highlight.Text": "#FFFFFFFF",
+        "CommonControls.Textbox": "#FF333337",
+        "CommonControls.Textbox.Border": "#FF434346",
+        "CommonControls.Textbox.Disabled": "#FF252526",
+        "CommonControls.Textbox.Disabled.Border": "#FF434346",
+        "CommonControls.Textbox.Disabled.Text": "#FF656565",
+        "CommonControls.Textbox.MouseOver": "#FF3F3F46",
+        "CommonControls.Textbox.MouseOver.Border": "#FF434346",
+        "CommonControls.Textbox.MouseOver.Text": "#FFF1F1F1",
+        "CommonControls.Textbox.Text": "#FFF1F1F1"
+    }
+}
