@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
@@ -61,6 +59,7 @@ namespace Rogue.Wpf
         protected override async void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            AppContext.SetSwitch("Switch.System.Windows.Controls.Text.UseAdornerForTextboxSelectionRendering", false);
             var serviceProvider = CompositionRoot();
             var bootstrapper = serviceProvider.GetRequiredService<Bootstrapper>();
             await bootstrapper.Run();
