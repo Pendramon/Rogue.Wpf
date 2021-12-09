@@ -7,8 +7,7 @@ namespace Rogue.Wpf.Models.Interfaces
     public interface IThemeService
     {
         Theme ActiveTheme { get; }
-        List<Theme> DefaultThemes { get; }
-        List<Theme> CustomThemes { get; }
+        List<Theme> Themes { get; }
         void SetTheme(Theme theme);
         Task InitializeAsync();
 

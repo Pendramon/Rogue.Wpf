@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
@@ -36,9 +37,8 @@ namespace Rogue.Wpf.Models
             }
         }
 
-        public List<Theme> DefaultThemes { get; private set; }
+        public List<Theme> Themes { get; private set; } = new List<Theme>();
 
-        public List<Theme> CustomThemes { get; private set; }
 
         public ThemeService(IThemeReader themeReader, IThemeFileWriter themeFileWriter)
         {
@@ -48,9 +48,14 @@ namespace Rogue.Wpf.Models
 
         public async Task InitializeAsync()
         {
-            DefaultThemes = new List<Theme>(themeReader.GetAllDefaultThemes());
-            SetTheme(Properties.Settings.Default.ActiveTheme ?? DefaultThemes.First());
-            CustomThemes = new List<Theme>(await themeReader.GetAllCustomThemesAsync(CustomThemesPath));
+            Themes.AddRange(themeReader.GetAllDefaultThemes());
+            if (string.IsNullOrWhiteSpace(Properties.Settings.Default.ActiveTheme))
+            {
+                Properties.Settings.Default.ActiveTheme = JsonSerializer.Serialize(Themes.First());
+            }
+
+            SetTheme(JsonSerializer.Deserialize<Theme>(Properties.Settings.Default.ActiveTheme));
+            Themes.AddRange(await themeReader.GetAllCustomThemesAsync(CustomThemesPath));
         }
 
         public void SetTheme(Theme theme)
@@ -74,7 +79,7 @@ namespace Rogue.Wpf.Models
                 }
             }
             this.ActiveTheme = theme;
-            Properties.Settings.Default.ActiveTheme = ActiveTheme;
+            Properties.Settings.Default.ActiveTheme = JsonSerializer.Serialize(ActiveTheme);
             Properties.Settings.Default.Save();
         }
 

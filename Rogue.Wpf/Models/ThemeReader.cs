@@ -16,9 +16,9 @@ namespace Rogue.Wpf.Models
         public async Task<Theme> ReadThemeAsync(string themeFileFullPath, CancellationToken cancellationToken = default)
         {
             await using var stream = File.OpenRead(themeFileFullPath);
-            return await JsonSerializer.DeserializeAsync<Theme>(stream, jsonTypeInfo: null, cancellationToken);
+            return await JsonSerializer.DeserializeAsync<Theme>(stream, cancellationToken: cancellationToken);
         }
-
+        // TODO: Refactor Theme Reader
         public async Task<IEnumerable<Theme>> GetAllCustomThemesAsync(string customThemesDirectory,
             CancellationToken cancellationToken = default)
         {
@@ -39,7 +39,7 @@ namespace Rogue.Wpf.Models
                 await using var fileStream = File.OpenRead(file);
                 try
                 {
-                    validThemes.Add(await JsonSerializer.DeserializeAsync<Theme>(fileStream, jsonTypeInfo: null, cancellationToken));
+                    validThemes.Add(await JsonSerializer.DeserializeAsync<Theme>(fileStream, cancellationToken: cancellationToken));
                 }
                 catch
                 {
@@ -58,7 +58,8 @@ namespace Rogue.Wpf.Models
                 .Where(resourceEntry => resourceEntry.Value != null)
                 .Select(resourceEntry => (byte[])resourceEntry.Value)
                 .Select(resourceEntry => Encoding.UTF8.GetString(resourceEntry))
-                .Select(resourceEntry => JsonSerializer.Deserialize<Theme>(resourceEntry));
+                .Select(resourceEntry => JsonSerializer.Deserialize<Theme>(resourceEntry))
+                .Select(theme => { theme.IsDefault = true; return theme; });
         }
     }
 }
