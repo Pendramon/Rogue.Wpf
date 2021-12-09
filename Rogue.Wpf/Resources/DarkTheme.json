@@ -1,6 +1,6 @@
 {
-    "Name": "Dark Theme",
-    "Author": "Rogue",
+  "Name": "Dark Theme",
+  "Author": "Rogue",
   "ThemeColors": {
     "MainWindow.Background": "#FF2D2D30",
     "MainWindow.Text": "#FF999999",
