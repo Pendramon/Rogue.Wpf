@@ -18,7 +18,7 @@ namespace Rogue.Wpf.Models
         public async Task<Theme> ReadThemeAsync(string themeFileFullPath, CancellationToken cancellationToken = default)
         {
             await using var stream = File.OpenRead(themeFileFullPath);
-            return await JsonSerializer.DeserializeAsync<Theme>(stream, null, cancellationToken);
+            return await JsonSerializer.DeserializeAsync<Theme>(stream, jsonTypeInfo: null, cancellationToken);
         }
 
         public async Task<IEnumerable<Theme>> GetAllCustomThemesAsync(string customThemesDirectory,
@@ -36,7 +36,7 @@ namespace Rogue.Wpf.Models
                 await using var fileStream = File.OpenRead(file);
                 try
                 {
-                    validThemes.Add(await JsonSerializer.DeserializeAsync<Theme>(fileStream, null, cancellationToken));
+                    validThemes.Add(await JsonSerializer.DeserializeAsync<Theme>(fileStream, jsonTypeInfo: null, cancellationToken));
                 }
                 catch
                 {

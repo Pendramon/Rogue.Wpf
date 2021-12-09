@@ -16,7 +16,7 @@ namespace Rogue.Wpf.Models
                 Directory.CreateDirectory(Path.GetDirectoryName(themeFileFullPath));
             }
             await using var stream = File.Create(themeFileFullPath);
-            await JsonSerializer.SerializeAsync<Theme>(stream, theme, null, cancellationToken);
+            await JsonSerializer.SerializeAsync<Theme>(stream, theme, jsonTypeInfo: null, cancellationToken);
             // This should write theme to file.
             // Will do unit tests as soon as i get the whole proof of concept established.
         }
