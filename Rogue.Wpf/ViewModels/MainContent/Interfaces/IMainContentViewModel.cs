@@ -4,6 +4,6 @@ namespace Rogue.Wpf.ViewModels.MainContent.Interfaces
 {
     public interface IMainContentViewModel : IViewModel
     {
-        
+
     }
 }

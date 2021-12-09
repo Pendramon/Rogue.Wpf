@@ -5,6 +5,6 @@ namespace Rogue.Wpf.ViewModels.MainContent
 {
     public class MainContentViewModel : ViewModelBase, IMainContentViewModel
     {
-        
+
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
-using Rogue.Wpf.Models.Interfaces;
 
 namespace Rogue.Wpf.Models
 {

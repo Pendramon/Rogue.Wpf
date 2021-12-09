@@ -63,11 +63,11 @@ namespace Rogue.Wpf.ViewModels
 
         private void SetDefaultViewModel() => this.CurrentMainContentViewModel =
             viewModelsList.FirstOrDefault(x => x is IMainContentViewModel);
-        
+
         private void ToggleThemeEditor() => this.CurrentMainContentViewModel =
             CurrentMainContentViewModel is IThemeEditorViewModel
                 ? previousMainContentViewModel
                 : viewModelsList.FirstOrDefault(x => x is IThemeEditorViewModel);
-        
+
     }
 }

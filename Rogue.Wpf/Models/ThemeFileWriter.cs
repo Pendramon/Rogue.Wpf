@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Rogue.Wpf.Models.Interfaces;
 using System.IO;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using Rogue.Wpf.Models.Interfaces;
 
 namespace Rogue.Wpf.Models
 {

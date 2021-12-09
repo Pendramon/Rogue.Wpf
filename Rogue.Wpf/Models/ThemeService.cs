@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 
@@ -60,7 +60,7 @@ namespace Rogue.Wpf.Models
                 try
                 {
                     Application.Current.Resources[color.Key] = ColorConverter.ConvertFromString(color.Value);
-                    Application.Current.Resources[color.Key + "BrushKey"] = (SolidColorBrush) new BrushConverter().ConvertFrom(color.Value);
+                    Application.Current.Resources[color.Key + "BrushKey"] = (SolidColorBrush)new BrushConverter().ConvertFrom(color.Value);
                 }
                 catch (Exception e) when (e is FormatException || e is NotSupportedException)
                 {
@@ -68,7 +68,7 @@ namespace Rogue.Wpf.Models
                     foreach (var originalThemeColor in this.ActiveTheme.ThemeColors)
                     {
                         Application.Current.Resources[originalThemeColor.Key] = ColorConverter.ConvertFromString(originalThemeColor.Value);
-                        Application.Current.Resources[originalThemeColor.Key + "BrushKey"] = (SolidColorBrush) new BrushConverter().ConvertFrom(originalThemeColor.Value);
+                        Application.Current.Resources[originalThemeColor.Key + "BrushKey"] = (SolidColorBrush)new BrushConverter().ConvertFrom(originalThemeColor.Value);
                     }
                     return;
                 }

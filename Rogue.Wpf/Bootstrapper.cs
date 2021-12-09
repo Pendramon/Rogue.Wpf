@@ -1,7 +1,6 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Rogue.Wpf.Models.Interfaces;
+﻿using Rogue.Wpf.Models.Interfaces;
 using Rogue.Wpf.ViewModels.Interfaces;
+using System.Threading.Tasks;
 
 namespace Rogue.Wpf
 {

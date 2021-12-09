@@ -1,14 +1,14 @@
-﻿using System;
-using Autofac;
+﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
+using Rogue.Wpf.Models;
+using Rogue.Wpf.Models.Interfaces;
 using Rogue.Wpf.ViewModels;
 using Rogue.Wpf.ViewModels.Interfaces;
 using Rogue.Wpf.ViewModels.MainContent;
 using Rogue.Wpf.ViewModels.MainContent.Interfaces;
+using System;
 using System.Windows;
-using Rogue.Wpf.Models;
-using Rogue.Wpf.Models.Interfaces;
 
 namespace Rogue.Wpf
 {
