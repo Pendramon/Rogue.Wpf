@@ -24,6 +24,11 @@ namespace Rogue.Wpf.Models
         public async Task<IEnumerable<Theme>> GetAllCustomThemesAsync(string customThemesDirectory,
             CancellationToken cancellationToken = default)
         {
+            if (!Directory.Exists(customThemesDirectory))
+            {
+                return Enumerable.Empty<Theme>();
+            }
+
             var files = Directory.GetFiles(customThemesDirectory);
             var validThemes = new List<Theme>();
             foreach (var file in files)
