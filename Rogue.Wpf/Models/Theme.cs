@@ -8,10 +8,5 @@ namespace Rogue.Wpf.Models
         public string Author { get; set; }
         public bool IsDefault { get; set; }
         public Dictionary<string, string> ThemeColors { get; set; }
-
-        public Theme()
-        {
-
-        }
     }
 }
