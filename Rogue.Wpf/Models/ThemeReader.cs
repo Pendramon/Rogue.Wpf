@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
+using System.IO.Abstractions;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -13,21 +13,30 @@ namespace Rogue.Wpf.Models
 {
     public class ThemeReader : IThemeReader
     {
+        private IFileSystem fileSystem { get; set; }
+        private IThemeValidator themeValidator { get; set; }
+
+        public ThemeReader(IFileSystem fileSystem, IThemeValidator themeValidator)
+        {
+            this.fileSystem = fileSystem;
+            this.themeValidator = themeValidator;
+        }
+
         public async Task<Theme> ReadThemeAsync(string themeFileFullPath, CancellationToken cancellationToken = default)
         {
-            await using var stream = File.OpenRead(themeFileFullPath);
+            await using var stream = fileSystem.File.OpenRead(themeFileFullPath);
             return await JsonSerializer.DeserializeAsync<Theme>(stream, cancellationToken: cancellationToken);
         }
         // TODO: Refactor Theme Reader
         public async Task<IEnumerable<Theme>> GetAllCustomThemesAsync(string customThemesDirectory,
             CancellationToken cancellationToken = default)
         {
-            if (!Directory.Exists(customThemesDirectory))
+            if (!fileSystem.Directory.Exists(customThemesDirectory))
             {
                 return Enumerable.Empty<Theme>();
             }
 
-            var files = Directory.GetFiles(customThemesDirectory);
+            var files = fileSystem.Directory.GetFiles(customThemesDirectory);
             var validThemes = new List<Theme>();
             foreach (var file in files)
             {
@@ -36,14 +45,23 @@ namespace Rogue.Wpf.Models
                     continue;
                 }
 
-                await using var fileStream = File.OpenRead(file);
                 try
                 {
-                    validThemes.Add(await JsonSerializer.DeserializeAsync<Theme>(fileStream, cancellationToken: cancellationToken));
+                    var theme = await this.ReadThemeAsync(file, cancellationToken);
+                    if (!this.themeValidator.Validate(theme))
+                    {
+                        continue;
+                    }
+
+                    validThemes.Add(theme);
+                }
+                catch (JsonException)
+                {
+                    // Not a valid theme.
                 }
                 catch
                 {
-                    // Not a valid theme.
+                    // A problem occured while attempting to read the theme.
                 }
             }
             return validThemes;

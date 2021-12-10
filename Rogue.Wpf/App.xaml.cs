@@ -8,6 +8,7 @@ using Rogue.Wpf.ViewModels.Interfaces;
 using Rogue.Wpf.ViewModels.MainContent;
 using Rogue.Wpf.ViewModels.MainContent.Interfaces;
 using System;
+using System.IO.Abstractions;
 using System.Windows;
 
 namespace Rogue.Wpf
@@ -17,7 +18,7 @@ namespace Rogue.Wpf
     /// </summary>
     public partial class App : Application
     {
-        private AutofacServiceProvider CompositionRoot()
+        private static AutofacServiceProvider CompositionRoot()
         {
             // The Microsoft.Extensions.DependencyInjection.ServiceCollection
             // has extension methods provided by other .NET Core libraries to
@@ -39,10 +40,12 @@ namespace Rogue.Wpf
             // registrations; if you make them AFTER Populate, the Autofac
             // registrations will override. You can make registrations
             // before or after Populate, however you choose.
+            containerBuilder.RegisterType<FileSystem>().As<IFileSystem>();
             containerBuilder.RegisterType<Bootstrapper>().SingleInstance();
             containerBuilder.RegisterType<MainWindow>();
             containerBuilder.RegisterType<MainWindowViewModel>().As<IMainWindowViewModel>();
             containerBuilder.RegisterType<MainContentViewModel>().As<IMainContentViewModel>();
+            containerBuilder.RegisterType<ThemeValidator>().As<IThemeValidator>();
             containerBuilder.RegisterType<ThemeEditorViewModel>().As<IThemeEditorViewModel>();
             containerBuilder.RegisterType<ThemeReader>().As<IThemeReader>();
             containerBuilder.RegisterType<ThemeFileWriter>().As<IThemeFileWriter>();
